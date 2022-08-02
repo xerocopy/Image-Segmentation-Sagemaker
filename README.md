@@ -1,2 +1,4 @@
 
-# Image segmentation project with sagemaker# image-segmentation-sagemaker
+# image-segmentation-sagemaker
+# Image segmentation project with sagemaker
+
