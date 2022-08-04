@@ -103,7 +103,7 @@ Follow the instructions in the notebook `Image_Segmentation.ipynb`
 
 
 ### Error in deployment phase:
-
+(refer to the issue page)
 
  
 
