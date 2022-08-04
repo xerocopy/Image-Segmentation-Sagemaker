@@ -9,7 +9,7 @@
   makes you familiar with one of those services on AWS i.e. Amazon SageMaker which helps in creating efficient and more accuracy rate 
 - Machine learning models and the other benefit is that can use other AWS services in your model such as S3 bucket, amazon Lambda for monitoring the performance of your ML model you can use AWS CloudWatch which is a monitoring tool.
 
-## TensorFlow
+# TensorFlow
 
 - TensorFlow is a software library or framework, designed by the Google team to implement machine learning and deep
   learning concepts in the easiest manner. It combines the computational algebra of optimization techniques for easy
@@ -20,7 +20,7 @@
   TensorFlow can train and run deep neural networks for handwritten digit classification, image recognition, word
   embedding and creation of various sequence models.
 
-## Image Sementation
+# Image Sementation
 
 - Image segmentation is a method in which a digital image is broken down into various subgroups called Image segments
   which helps in reducing the complexity of the image to make further processing or analysis of the image simpler.
