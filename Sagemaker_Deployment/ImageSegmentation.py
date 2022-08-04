@@ -7,11 +7,13 @@ import subprocess
 
 
 # Installing all the Pack Required :
+subprocess.check_call([sys.executable, "-m", "pip", "install", "--upgrade", "pip"])
 subprocess.check_call([sys.executable, "-m", "pip", "install", "matplotlib"])
 subprocess.check_call([sys.executable, "-m", "pip", "install", "tifffile"])
 subprocess.check_call([sys.executable, "-m", "pip", "install", "patchify"])
 subprocess.check_call([sys.executable, "-m", "pip", "install", "h5py==2.10.0"])
 subprocess.check_call([sys.executable, "-m", "pip", "install", "segmentation-models==1.0.1"])
+
 
 # Importing nessary packages:
 import io
@@ -25,6 +27,7 @@ import segmentation_models as sm
 from matplotlib import pyplot as plt
 from tensorflow.keras import backend as K
 from sklearn.model_selection import train_test_split
+import configparser
 
 # The training code will be contained in a main gaurd (if __name__ == '__main__') so SageMaker will execute the code found in the main.
 
@@ -54,18 +57,21 @@ if __name__ == '__main__':
     
     
     
+    # Read the config file
+    config = configparser.ConfigParser()
+    config.read('../aws_S3_full_access.cfg')
+
     # Loading The Data:
     s3 = boto3.resource(
-            service_name='s3',
-            region_name='us-east-1',
-            aws_access_key_id='AKIASCVPXXOPVBCKOLUF',
-            aws_secret_access_key='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'
-        )
+       service_name='s3',
+       region_name='us-east-1',
+       aws_access_key_id=config['AWS']['KEY'],
+       aws_secret_access_key=config['AWS']['SECRET'])
 
     
+ 
     # Defining the DATA Location in the S3 bucket :
-    
-    default_location = "s3://appledatabucket/Apple/"
+    default_location = "s3://aws-sagemaker-image-segmentation-rotten-apple/data/"
     print(default_location)    
     print(os.listdir())
     training_dir="Model"
@@ -79,7 +85,7 @@ if __name__ == '__main__':
         mask_data_stack = []
     
 #         print("Reading the images")
-        s3_bucket = "appledatabucket"
+        s3_bucket = "aws-sagemaker-image-segmentation-rotten-apple"
         keys = []
         for obj in s3.Bucket(s3_bucket).objects.all():
             keys.append(obj.key)
@@ -87,12 +93,12 @@ if __name__ == '__main__':
         for key in keys:
             file_stream = io.BytesIO()
             s3.Bucket(s3_bucket).Object(key).download_fileobj(file_stream)
-            if ".jpg" in key and "Apple" in key:
+            if ".jpg" in key and "data" in key:
                 print(key)
                 img = plt.imread(file_stream, format='jpg')
                 print(img.shape)
                 img_data_array.append(img)
-            elif ".tiff" in key and "Apple" in key:
+            elif ".tiff" in key and "data" in key:
                 mask = plt.imread(file_stream, format='tiff')
                 print(mask.shape)
                 mask_data_stack.append(mask)
