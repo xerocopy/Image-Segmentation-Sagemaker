@@ -99,5 +99,11 @@ There are two ways to execute the end to end flow.
 ### IPython SageMaker Notebook
 
 Follow the instructions in the notebook `Image_Segmentation.ipynb`
+
+
+
+### Error in deployment phase:
+
+
  
 
