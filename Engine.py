@@ -10,20 +10,26 @@ from MLPipeline.Data_Processing import Data_Processing
 from MLPipeline.Plotting import Plotting
 from MLPipeline.Model_Training import Model_Training
 
+import configparser
+
 F1 = Loading_Data()
 F2 = Data_Processing()
 F3 = Plotting()
 F4 = Model_Training()
 
-# Loading The Data from S3 Bucket:
+# Read the config file
+config = configparser.ConfigParser()
+config.read('aws_S3_full_access.cfg')
+# Loading The Data:
 s3 = boto3.resource(
-    service_name='s3',
-    region_name='',
-    aws_access_key_id='',
-    aws_secret_access_key='')
+   service_name='s3',
+   region_name='us-east-1',
+   aws_access_key_id=config['AWS']['KEY'],
+   aws_secret_access_key=config['AWS']['SECRET'])
+
 
 # Defining the DATA Location in the S3 bucket :
-default_location = "s3://appledatabucket/Apple/"
+default_location = "s3://aws-sagemaker-image-segmentation-rotten-apple/data/"
 print(default_location)
 print(os.listdir())
 training_dir = "Model"
