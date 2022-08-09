@@ -55,16 +55,14 @@ if __name__ == '__main__':
     
     
     
-    # Read the config file
-    config = configparser.ConfigParser()
-    config.read('../aws_S3_full_access.cfg')
+#     # Read the config file
+#     config = configparser.ConfigParser()
+#     config.read('../aws_S3_full_access.cfg')
 
     # Loading The Data:
     s3 = boto3.resource(
        service_name='s3',
-       region_name='us-east-1',
-       aws_access_key_id=config['AWS']['KEY'],
-       aws_secret_access_key=config['AWS']['SECRET'])
+       region_name='us-east-1')
 
     
     # Defining the DATA Location in the S3 bucket :
@@ -83,7 +81,7 @@ if __name__ == '__main__':
         mask_data_stack = []
     
 #         print("Reading the images")
-        s3_bucket = "aws-sagemaker-image-segmentation-rotten-appl"
+        s3_bucket = "aws-sagemaker-image-segmentation-rotten-apple"
         keys = []
         for obj in s3.Bucket(s3_bucket).objects.all():
             keys.append(obj.key)
@@ -109,7 +107,6 @@ if __name__ == '__main__':
     img_data_array, mask_data_stack = loading_data(default_location)
 
         
-    
     # Function to Patch the Images:
     
     print("Patching Images....")
