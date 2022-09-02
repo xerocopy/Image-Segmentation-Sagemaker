@@ -1,4 +1,4 @@
-# Image segmentation project with sagemaker
+# Image Segmentation Project with Sagemaker
 
 
 ## In this project, semantic image segmentation is used to discriminate the rotton apple from the good ones. The traininig and inference models are completed in the aws sagemaker enviornment. 
@@ -34,7 +34,7 @@ README.md
   
   
 2. In Sagemaker Studio:
-  - select instance based on the job and cost (ml.g4dn.xlarge accelerated computing)
+  - select instance based on the job and cost (start with ml.t3.medium and switch to ml.g4dn.xlarge accelerated computing when necessary)
   - run the deployment notebook, initialize the training on tf_estimator
   - create the inference endpoint
   - check training process, model and endpoint on aws web interface
