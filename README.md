@@ -23,7 +23,7 @@ README.md
 
 ## Steps from developement to deployment
 
-1. In the DevOps VM:
+#### 1. In the DevOps VM:
   - select the runtime: tensorflow 1.15 python3.6
   - loading data from s3
   - patching the images
@@ -33,7 +33,7 @@ README.md
   - evaluate the model
   
   
-2. In Sagemaker Studio:
+#### 2. In Sagemaker Studio:
   - select instance based on the job and cost (ml.t3.medium /ml.g4dn.xlarge)
   - run the deployment notebook, initialize the training on tf_estimator
   - create the inference endpoint
