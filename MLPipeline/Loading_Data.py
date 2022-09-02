@@ -8,20 +8,20 @@ class Loading_Data:
         img_data_array = []
         mask_data_stack = []
         print("Reading the images")
-        s3_bucket = "aws-sagemaker-image-segmentation-rotten-apple"
+        s3_bucket = "appledatabucket-123"
         keys = []
         for obj in s3.Bucket(s3_bucket).objects.all():
             keys.append(obj.key)
         for key in keys:
             file_stream = io.BytesIO()
             s3.Bucket(s3_bucket).Object(key).download_fileobj(file_stream)
-            if ".jpg" in key and "data" in key:
+            if ".jpg" in key and "Apple" in key:
                 print(key)
                 img = plt.imread(file_stream, format='jpg')
                 print(img.shape)
                 img_data_array.append(img)
 
-            elif ".tiff" in key and "data" in key:
+            elif ".tiff" in key and "Apple" in key:
                 mask = plt.imread(file_stream, format='tiff')
                 print(mask.shape)
                 mask_data_stack.append(mask)
