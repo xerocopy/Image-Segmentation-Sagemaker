@@ -34,7 +34,7 @@ README.md
   
   
 2. In Sagemaker Studio:
-  - select instance based on the job and cost (start with ml.t3.medium and switch to ml.g4dn.xlarge accelerated computing when necessary)
+  - select instance based on the job and cost (ml.t3.medium /ml.g4dn.xlarge)
   - run the deployment notebook, initialize the training on tf_estimator
   - create the inference endpoint
   - check training process, model and endpoint on aws web interface
