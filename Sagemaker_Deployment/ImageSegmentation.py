@@ -35,7 +35,7 @@ if __name__ == '__main__':
     
     from argparse import ArgumentParser
     parser = argparse.ArgumentParser()
-    parser.add_argument('--epochs', type=int, default=50)
+    parser.add_argument('--epochs', type=int, default=2)
     parser.add_argument('--validation_steps', type=int, default=50)
     parser.add_argument('--steps_per_epoch', type=int, default=50)
     parser.add_argument('--gpu-count', type=int, default=os.environ['SM_NUM_GPUS'])
@@ -67,7 +67,7 @@ if __name__ == '__main__':
     
     # Defining the DATA Location in the S3 bucket :
     
-    default_location ="s3://aws-sagemaker-image-segmentation-rotten-apple/data/"
+    default_location ="s3://appledatabucket-123/Apple/"
     print(default_location)    
     print(os.listdir())
     training_dir="Model"
@@ -81,7 +81,7 @@ if __name__ == '__main__':
         mask_data_stack = []
     
 #         print("Reading the images")
-        s3_bucket = "aws-sagemaker-image-segmentation-rotten-apple"
+        s3_bucket = "appledatabucket-123"
         keys = []
         for obj in s3.Bucket(s3_bucket).objects.all():
             keys.append(obj.key)
@@ -89,12 +89,12 @@ if __name__ == '__main__':
         for key in keys:
             file_stream = io.BytesIO()
             s3.Bucket(s3_bucket).Object(key).download_fileobj(file_stream)
-            if ".jpg" in key and "data" in key:
+            if ".jpg" in key and "Apple" in key:
                 print(key)
                 img = plt.imread(file_stream, format='jpg')
                 print(img.shape)
                 img_data_array.append(img)
-            elif ".tiff" in key and "data" in key:
+            elif ".tiff" in key and "Apple" in key:
                 mask = plt.imread(file_stream, format='tiff')
                 print(mask.shape)
                 mask_data_stack.append(mask)
