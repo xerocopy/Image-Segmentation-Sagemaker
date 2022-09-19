@@ -1,8 +1,6 @@
 # Image Segmentation Project with Sagemaker
 
-
-## In this project, semantic image segmentation is used to discriminate the rotton apple from the good ones. The traininig and inference models are completed in the aws sagemaker enviornment. 
-
+In this project, semantic image segmentation is used to discriminate the rotton apple from the good ones. The traininig and inference models are completed in the aws sagemaker enviornment. 
 
 ## Assets:
 MLPipeline:
@@ -20,6 +18,10 @@ Sagemaker Deployment:
 
 Engine.py
 README.md
+
+### Technology and library
+aws sagemaker (studio, training, monitoring, deployment, endpoint..)
+patchfy 
 
 ## Steps from developement to deployment
 
